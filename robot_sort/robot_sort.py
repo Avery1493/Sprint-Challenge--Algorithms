@@ -96,30 +96,46 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # # while light is on
-        # while self.light_is_on() == True:
-        #     # pick up item
-        #     self.swap_item()
-        #     # while can move right
-        #     while self.can_move_right() == True:
-        #         self.move_right()
-        #         # swap items
-        #         if self.compare_item() == 1:
-        #             self.swap_item()
-        #             self.set_light_on()
-        #     # while can move left
-        #     while self.can_move_left():
-        #         self.move_left()
+        # if can't move right and light is off
+            # return self
+        if self.can_move_right() == False and self.light_is_on() == False:
+            return self
 
-        #     while self.can_move_right() and self.compare_item() != None:
-        #         self.move_right()
+        # turn light on
+        # while light is on 
+        self.set_light_on()
+        while self.light_is_on() == True:
+            # pick up item -- swap
+            self.swap_item()
+            self.set_light_off()
+            # while can move right
+            while self.can_move_right() == True:
+                # move right
+                self.move_right()
 
-        #     self.swap_item()
-        #     self.move_right()
+                # compare position with item -- compare
+                # if item > position -- == 1
+                if self.compare_item() == 1:
+                    # swap
+                    self.swap_item()
+                    # turn light on
+                    self.set_light_on()
+                
+            # while can move left
+            while self.can_move_left() == True:
+                # move left
+                self.move_left()
 
-        #     if self.can_move_right == False:
-        #         self.set_light_off()
-            
+                # compare position with item -- compare
+                # if compare == None
+                if self.compare_item() == None:
+                    # drop item swap
+                    self.swap_item()
+        
+        return self
+
+
+
 
 
 
@@ -128,7 +144,7 @@ if __name__ == "__main__":
     # with `python robot_sort.py`
 
     #l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
-    l = [15, 10, 8, 20]
+    l = [15, 10, 8, 20, 6, 3]
     robot = SortingRobot(l)
 
     print(robot.sort())
