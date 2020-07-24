@@ -11,5 +11,5 @@ b) O(n log n) The algorithm has to loop through each input, but the runtime is s
 c) O(n) For each bunny, 3 is added.
 
 ## Exercise II
-
+Since floors of a building are typically in order, you use a binary seach to guess which floor is f. Binary search will always start in the middle and eliminate half of the floors. The runtime for would be O(log n)
 
